@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+function lastWeekday(year, month, weekday) {
+    const date = new Date(year, month, 1);
+    while (date.getDay() !== weekday) {
+        date.setDate(date.getDate() - 1);
+    }
+    return date;
+}
+function stringDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}.${month}.${day}`;
+}
+function corporatePlanning(year) {
+    for (let month of [1, 4, 7, 10]) {
+        const a = lastWeekday(year, month, 5);
+        const z = lastWeekday(year, month + 1, 1);
+        a.setDate(a.getDate() - 4);
+        z.setDate(z.getDate() + 4);
+        document.write(`${stringDate(a)},${stringDate(z)}<br/>`);
+    }
+}
+corporatePlanning(new Date().getFullYear());
+</script>
+</body>
+</html>
